@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+
+ <!-- Bootstrap CSS -->
+    <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}"/>
+</head>
+
+<body>
+   <div class="container">
+      <div class="row">
+         <div class="col pt-5">
+             <h1 class="text-center">Ricerca la tua pizza preferita!</h1>
+             <form method="GET" th:action="@{/pizza/user/search}">
+		     <label for="exampleInputEmail1" class="form-label">Nome</label>
+		     <input type="text" name="name" class="form-control" id="exampleInputEmail1" 
+                    aria-describedby="emailHelp" th:value="${name}"
+             >
+             <div class="pt-4 pb-4">
+	            <button type="submit" class="btn btn-dark text-white">Cerca</button>
+	            <button type="submit" class="btn btn-dark text-white">   
+	               <a style="text-decoration: none" class="text-white" href="/pizza/user">HomePage</a>
+	            </button>
+	         </div>
+	         <div class="class="pt-4"" th:replace= "frag :: pizze (${pizze})" ></div>
+	
+	</form>
+    
+	<h4 class="text-center" th:if="${pizze.size < 1}">La ricerca non ha prodotto risultati</h4>
+         </div>
+      </div>
+   </div>
+</body>
+</html>

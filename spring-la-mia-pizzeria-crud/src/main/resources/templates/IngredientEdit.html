@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+
+<!-- Bootstrap CSS -->
+    <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}"/>
+</head>
+<body>
+
+   <div th:replace="frag :: errors()"></div>
+
+   <div class="container">
+   <div class="row">
+      <div class="col">
+          <h1 class="text-center p-3">Modifica i tuoi ingredienti</h1>
+          <form method="POST" th:action="@{/ingredient/update/{id} (id = *{id})}" th:object="${ingredient}">
+          
+             <input type="number" name="id" th:field="*{id}" style="display:none">
+             <label for="exampleInputEmail1" class="form-label">Nome</label>
+             <input type="text" name="name" class="form-control" id="exampleInputEmail1" 
+                    aria-describedby="emailHelp" th:field="*{name}"
+             >
+             
+             <label class="pt-3">Pizze</label><br>
+                 <div th:each="pizza : ${pizze}"
+                      th:object="${pizza}"
+                      class="mb-3"
+                 >
+                    <input type="checkbox" 
+                           name="pizze"
+                           th:value="*{id}" 
+                           th:field="${ingredient.pizze}"
+                    >             
+                    <label>[[*{name}]]</label>
+                  </div>
+             
+             <div class="pt-3 text-center">
+                   <button type="submit" class="btn btn-warning">Modifica</button>
+                   <button class="btn btn-success text-white"> 
+                      <a style="text-decoration: none" href="/ingredient" class="text-white">HomePage</a>
+                  </button>
+             </div>
+          </form>
+      </div>
+   </div>
+</div>
+</body>
+</html>

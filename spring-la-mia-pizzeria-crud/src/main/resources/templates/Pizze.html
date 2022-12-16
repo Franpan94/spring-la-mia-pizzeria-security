@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+
+ <!-- Bootstrap CSS -->
+    <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}"/>
+</head>
+
+<body class="pt-5">
+   <h4 class="text-center text-danger">[[${message}]]</h4>
+   <h1 class="pb-3 text-center">Pizze</h1>
+   <div class=" pb-3 d-flex justify-content-around">
+      <button class="btn btn-primary">
+         <a style="text-decoration: none" href="/pizza/admin/create" class="text-white">Aggiungi nuova pizza</a>
+      </button>
+      <button class="btn btn-primary">
+         <a style="text-decoration: none" href="/pizza/user/search" class="text-white">Cerca fra le tue pizze</a>
+     </button>
+   </div>
+   <div th:replace= "frag :: pizze (${pizze})" ></div>
+   <h4 class="p-5 text-center" th:if="${pizze.size() < 1}">Non sono presenti pizze al momento</h4>
+   <div class="pb-2 text-center">
+      <button class="btn btn-dark">
+          <a style="text-decoration: none" class="text-white ms_text_decoration" href="/">Home</a>
+      </button>
+   </div>
+</body>
+</html>

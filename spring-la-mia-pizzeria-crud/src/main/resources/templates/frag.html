@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+
+<!-- Bootstrap CSS -->
+    <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}"/>
+</head>
+
+<body>
+   <div class="container" th:fragment="pizze(pze)">
+      <div class="row">
+         <div class="col">
+            <table class="table table-striped table-dark">
+              <thead>
+                <tr>
+                  <th scope="col">Id</th>
+                  <th scope="col">Nome</th>
+                  <th scope="col" class="text-end">Modifica/Elimina</th>
+                </tr>
+              </thead>
+              <tbody>
+                 <tr th:each="pizza : ${pze}" th:object="${pizza}">
+                    <th scope="row">[[*{id}]]</th>
+                    <td>
+                       <a class="pb-3" 
+                          th:href="@{/pizza/user/{id} (id=*{id})}">[[*{name}]]
+                       </a>
+                    </td>
+                    <td class="text-end">
+                       <button class="btn btn-warning">
+                         <a style="text-decoration: none" class="text-dark ms_text_decoration" th:href="@{/pizza/admin/edit/{id} (id=*{id})}">Modifica la tua pizza</a>
+                       </button>
+                       <button class="btn btn-danger">
+                         <a style="text-decoration: none" class="text-white ms_text_decoration" th:href="@{/pizza/admin/delete/{id} (id=*{id})}">Elimina</a>
+                       </button>
+                     </td>
+                 </tr>
+               </tbody>  
+           </table>
+         </div>
+      </div>
+   </div>
+   
+   <div class="container" th:fragment="drinks(drk)">
+      <div class="row">
+         <div class="col">
+            <table class="table table-striped table-dark">
+              <thead>
+                <tr>
+                  <th scope="col">Id</th>
+                  <th scope="col">Nome</th>
+                  <th scope="col" class="text-end">Modifica/Elimina</th>
+                </tr>
+              </thead>
+              <tbody>
+                 <tr th:each="drink : ${drk}" th:object="${drink}">
+                   <th scope="row">[[*{id}]]</th>
+                   <td>
+                      <a class="pb-3" 
+                         th:href="@{/drink/{id} (id=*{id})}">[[*{name}]]
+                      </a>
+                   </td>
+                   <td class="text-end">
+                     <button class="btn btn-warning">
+                        <a style="text-decoration: none" class="text-dark ms_text_decoration" th:href="@{/drink/edit/{id} (id=*{id})}">Modifica il tuo drink</a>
+                     </button>
+                     <button class="btn btn-danger">
+                        <a style="text-decoration: none" class="text-white ms_text_decoration" th:href="@{/drink/delete/{id} (id=*{id})}">Elimina</a>
+                     </button>
+                   </td>
+                 </tr>
+              </tbody>  
+            </table>
+         </div>
+      </div>
+   </div>
+   
+   <div th:fragment="form()">
+      <div class="mb-3">
+         <label for="exampleInputEmail1" class="form-label">Nome</label>
+         <input type="text" name="name" class="form-control" id="exampleInputEmail1" 
+          aria-describedby="emailHelp" th:field="*{name}"
+         >
+     </div>
+     <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Immagine</label>
+        <input type="text" name="img" class="form-control" id="exampleInputEmail1" 
+         aria-describedby="emailHelp" th:field="*{img}"
+        >
+     </div>
+     <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Descrizione</label>
+        <input type="text" name="description" class="form-control" id="exampleInputEmail1" 
+         aria-describedby="emailHelp" th:field="*{description}"
+        >
+     </div>
+     <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Prezzo</label>
+        <input type="number" name="price" class="form-control" id="exampleInputEmail1" 
+         aria-describedby="emailHelp" th:field="*{price}"
+        >
+     </div>						
+   </div> 
+   
+   <div th:fragment="errors()">
+      <h3 class="text-danger text-center" th:if="${errors}">Errore!</h3>
+		<ul class="text-danger text-center">
+			<li
+				th:each="error : ${errors}"
+				th:object="${error}"
+			>
+				[[*{defaultMessage}]]
+			</li>
+		</ul>
+		<div class="text-danger text-center">[[${message}]]</div> 
+	</div>
+	
+	<div th:fragment="show()">
+	  <h1 class="text-center p-3">[[*{name}]]</h1>
+      <img alt="pizza" th:src="*{img}" class="w-25">
+      <h3 class="pt-3 pb-3">Descrizione</h3>
+      <span>[[*{description}]]</span>
+      <h4 class="pt-3">Prezzo: [[*{price}]] €</h4> 
+	</div>
+	
+	<div class="container" th:fragment="priceAbleInts(prts)">
+      <div class="row">
+         <div class="col">
+            <table class="table table-striped table-dark">
+              <thead>
+                <tr>
+                  <th scope="col">Nome</th>
+                  <th scope="col" class="text-end">Prezzo</th>
+                </tr>
+              </thead>
+              <tbody>
+                 <tr th:each="priceAbleInt : ${prts}" th:object="${priceAbleInt}">
+                    <td>
+                       [[*{name}]]
+                    </td>
+                    <td class="text-end">
+                       [[*{price}]] €
+                    </td>
+                 </tr>
+               </tbody>  
+           </table>
+         </div>
+      </div>
+   </div>
+</body>
+</html>
+
+
+
+

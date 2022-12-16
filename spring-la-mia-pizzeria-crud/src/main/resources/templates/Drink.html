@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+
+<!-- Bootstrap CSS -->
+    <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}"/>
+</head>
+<body th:object="${drink}" class="text-center pb-3">
+   
+   <div th:replace="frag :: show()"></div>
+   
+   <button class="btn btn-success">
+      <a style="text-decoration: none" class="text-white" href="/drink">HomePage</a>
+   </button>
+   <button class="btn btn-warning">
+       <a style="text-decoration: none" class="text-dark" th:href="@{/drink/edit/{id} (id=*{id})}">Modifica il tuo drink</a>
+   </button>
+   <button class="btn btn-danger">
+       <a style="text-decoration: none" class="text-white" th:href="@{/drink/delete/{id} (id=*{id})}">Elimina</a>
+   </button>
+   <button class="btn btn-primary">
+       <a style="text-decoration: none" class="text-white" href="/drink/search">Torna alla ricerca del tuo drink</a>
+   </button>
+   <button class="btn btn-dark">
+       <a style="text-decoration: none" class="text-white" href="/pizzaAndDrink/search">Torna alla ricerca complessiva</a>
+   </button>
+</body>
+</html>

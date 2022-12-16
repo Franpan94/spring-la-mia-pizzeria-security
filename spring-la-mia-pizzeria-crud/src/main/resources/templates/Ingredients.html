@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+
+<!-- Bootstrap CSS -->
+    <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}"/>
+</head>
+
+<body>
+   <div th:replace="frag :: errors()"></div>
+
+<h1 class="text-center p-3">Ingredienti</h1>
+<div class="text-center pb-3">
+      <button class="btn btn-dark">
+        <a style="text-decoration: none" class="text-white" href="/ingredient/create">Aggiungi i tuoi nuovi ingredienti</a>
+      </button>
+   </div>
+   <div class="container">
+      <div class="row">
+         <div class="col">
+            <table class="table table-striped table-dark">
+              <thead>
+                <tr>
+                  <th scope="col">Id</th>
+                  <th scope="col">Ingredienti</th>
+                  <th scope="col" class="text-center">Pizze</th>
+                  <th scope="col" class="text-end">Modifica/Elimina</th>
+                </tr>
+              </thead>
+              <tbody>
+                 <tr th:each="ingredient : ${ingredients}" th:object="${ingredient}">
+                    <th scope="row">[[*{id}]]</th>
+                    <td>
+                       <span>[[*{name}]]</span>
+                    </td>
+                    <td class="text-center">
+						<span class="text-center" 
+						      th:each="pizza : ${ingredient.pizze}"
+						>  [[${pizza.name}]], 
+						</span>
+					</td>			
+                    <td class="text-end">
+                       <button class="btn btn-warning">
+                         <a style="text-decoration: none" class="text-dark ms_text_decoration" th:href="@{/ingredient/edit/{id} (id=*{id})}">Modifica i tuoi ingredienti</a>
+                       </button>
+                       <button class="btn btn-danger">
+                         <a style="text-decoration: none" class="text-white ms_text_decoration" th:href="@{/ingredient/delete/{id} (id=*{id})}">Elimina</a>
+                       </button>
+                     </td>
+                     
+                 </tr>
+               </tbody>  
+           </table>
+              <h4 class="p-5 text-center" th:if="${ingredients.size() < 1}">Non sono presenti ingredienti al momento</h4>
+           
+         </div>
+      </div>
+   </div>
+   <div class="text-center pb-3">
+      <button class="btn btn-dark">
+        <a style="text-decoration: none" class="text-white" href="/">Home</a>
+      </button>
+   </div>
+</body>
+</html>

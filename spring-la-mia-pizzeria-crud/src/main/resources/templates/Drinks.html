@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+
+ <!-- Bootstrap CSS -->
+    <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}"/>
+</head>
+</head>
+<body class=" pt-5">
+   <h4 class="text-center text-danger">[[${message}]]</h4>
+   <h1 class="pb-3 text-center">Drink</h1>
+   <div class="pb-3 d-flex justify-content-around">
+      <button class="btn btn-primary mb-3">
+         <a style="text-decoration: none" href="/drink/create" class="text-white">Aggiungi nuovo drink</a>
+     </button>
+     <button class="btn btn-primary mb-3">
+         <a style="text-decoration: none" href="/drink/search" class="ms_text_decoration text-white">Cerca fra i tuoi drink</a>
+     </button>
+   </div>
+   <div th:replace= "frag :: drinks (${drinks})" ></div>
+   <h4 class="p-5 text-center" th:if="${drinks.size() < 1}">Non sono presenti drink al momento</h4>
+   <div class="pb-2 text-center">
+      <button class="btn btn-dark">
+          <a style="text-decoration: none" class="text-white ms_text_decoration" href="/">Home</a>
+      </button>
+   </div>
+</body>
+</html>
+
+
+

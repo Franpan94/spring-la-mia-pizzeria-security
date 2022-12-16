@@ -25,16 +25,16 @@
        <a style="text-decoration: none" class="text-white ms_text_decoration" href="/pizza/user">HomePage</a>
    </button>
    <button class="btn btn-warning">
-       <a style="text-decoration: none" class="text-dark ms_text_decoration" th:href="@{/pizza/admin/edit/{id} (id=*{id})}">Modifica la tua pizza</a>
+       <a style="text-decoration: none" class="text-dark ms_text_decoration" th:href="@{/pizza/admin/edit/{id} (id=*{id})}" sec:authorize="hasAuthority('ADMIN')">Modifica la tua pizza</a>
    </button>
    <button class="btn btn-danger">
-       <a style="text-decoration: none" class="text-white ms_text_decoration" th:href="@{/pizza/admin/delete/{id} (id=*{id})}">Elimina</a>
+       <a style="text-decoration: none" class="text-white ms_text_decoration" th:href="@{/pizza/admin/delete/{id} (id=*{id})}" sec:authorize="hasAuthority('ADMIN')">Elimina</a>
    </button>
    <button class="btn btn-primary">
-       <a style="text-decoration: none" class="text-white" href="/pizza/user/search">Torna alla ricerca della tua pizza</a>
+       <a style="text-decoration: none" class="text-white" href="/pizza/user/search" sec:authorize="hasAuthority('USER')">Torna alla ricerca della tua pizza</a>
    </button>
    <button class="btn btn-dark">
-       <a style="text-decoration: none" class="text-white" href="/pizzaAndDrink/user/search">Torna alla ricerca complessiva</a>
+       <a style="text-decoration: none" class="text-white" href="/pizzaAndDrink/user/search" sec:authorize="hasAuthority('USER')">Torna alla ricerca complessiva</a>
    </button>
 </body>
 </html>

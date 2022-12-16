@@ -12,12 +12,16 @@
 <body class="pt-5">
    <h4 class="text-center text-danger">[[${message}]]</h4>
    <h1 class="pb-3 text-center">Pizze</h1>
+   <div class="text-center p-3">
+      Logged user: <span sec:authentication="name">Bob</span>
+      Roles: <span sec:authentication="principal.authorities">[USER, ADMIN]</span>
+   </div>
    <div class=" pb-3 d-flex justify-content-around">
       <button class="btn btn-primary">
-         <a style="text-decoration: none" href="/pizza/admin/create" class="text-white">Aggiungi nuova pizza</a>
+         <a style="text-decoration: none" href="/pizza/admin/create" class="text-white" sec:authorize="hasAuthority('ADMIN')">Aggiungi nuova pizza</a>
       </button>
       <button class="btn btn-primary">
-         <a style="text-decoration: none" href="/pizza/user/search" class="text-white">Cerca fra le tue pizze</a>
+         <a style="text-decoration: none" href="/pizza/user/search" class="text-white" sec:authorize="hasAuthority('USER')">Cerca fra le tue pizze</a>
      </button>
    </div>
    <div th:replace= "frag :: pizze (${pizze})" ></div>
